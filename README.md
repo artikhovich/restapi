@@ -1,5 +1,14 @@
 
 # RestAPI project
+## Структура:
+config\
+category\
+product\
+objects\
+app\ ***frontend dir***
+    assets\
+        css\
+        js\
 ## SQL data
 база данных описывающая подробности продуктов
 categories
@@ -9,7 +18,11 @@ products
 /config/product.php
 
 ## PHP приложение
-Методы read, create, update, delete
+** Методы: **
+    [X] read, 
+    [] create,
+    [] update,
+    [] delete
 
 ## JSON формат
 /objects/products.php
