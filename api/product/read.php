@@ -43,5 +43,3 @@ if($num>0){
 	http_response_code(200);
 	echo json_encode($products_arr);
 }
-
-

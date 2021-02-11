@@ -1,32 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 	<meta charset="UTF-8">
 	<title>Rest Api App</title>
+	<link rel="stylesheet" type="text/css" href="app/assets/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="app/assets/css/style.css">
 </head>
-<body>🅰️ртихович Сергей</body>
+<body>
+<p>Работаем над JS  и отображение json по кнопке</p>
 
-<?php 
-//phpinfo(); 
-echo "\nRequire script:";
-
-require_once __DIR__ . '/config/database.php';
-// соединение c базой
-$database = new Database();
-$db = $database->getConnection();
-
-$result = mysql_query("SELECT * FROM categories ");
-$row = mysql_fetch_assoc($result);
-echo $row;
-/*
-$selectCat=$mConnect->prepare("SELECT * FROM categories ");
-
-$selectCat->execute();
-while ($row = $selectCat->fetch(PDO::FETCH_LAZY)) {
-	echo 'Category : '.$row->name;
-}
-*/
-
-Database::Close();
-?>
+<div class="button"><a class="btn btn-primary" href="http://localhost/restapi/api/product/read.php">Ссылка на JSON</a></div>
+<div id="app"></div>
+<script type="text/javascript" src="app/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="app/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="app/app.js"></script>
+</body>
 </html>
