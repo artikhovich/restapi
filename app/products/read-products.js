@@ -9,13 +9,17 @@ var pageContentProducts = `
     </form>
 `;
 
+// function changePageTitle(page_title){
+//     $("#page-title").text(page_title);
+//     document.title = "RestAPI - " + page_title;
+// }
 
 // функция для показа списка товаров 
 function showProducts(){
     let read_products_html=``;
     $.getJSON("api/product/read.php", function(data){
-    read_products_html+=`<table class="read-products read-products table table-bordered table-hover"><tbody>`;
-    read_products_html+=`<tr>
+        read_products_html+=`<table class="read-products read-products table table-bordered table-hover"><tbody>`;
+        read_products_html+=`<tr>
          <th class='w-15-pct'>ID</th>
          <th class='w-15-pct'>Название</th>
          <th class='w-15-pct'>Описание</th>
@@ -53,22 +57,22 @@ function showProducts(){
         });
 
     read_products_html+=`</tbody></table>`;
+    $("#page-content").html(read_products_html);
+    changePageTitle("Перечень товаров: ");
 
-    // showProducts();
-    // changePageTitle('Rest Api App: JSON данные');
     });
-    return read_products_html;
+    //return read_products_html;
 };
 
 
-$("#page-content").html(read_products_html);
 
 // изменяем заголовок страницы 
 // changePageTitle("Все товары");
+// changePageTitle('Rest Api App: JSON данные');
 
 jQuery(function($){
-    $(document).on('click', '#read-products', function(){
-        // showProducts(5);
-        $("#page-content").html(showProducts);
-    });
+     $("a.read-products-button").click (function(){
+         showProducts();
+
+     });
 });
