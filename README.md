@@ -19,10 +19,10 @@ products
 
 ## PHP приложение
 ** Методы: **
-    [X] read, 
-    [] create,
-    [] update,
-    [] delete
+- [x] read, 
+- [ ] create,
+- [ ] update,
+- [ ] delete
 
 ## JSON формат
 /objects/products.php

@@ -8,8 +8,9 @@
 </head>
 <body>
 <p>Работаем над JS  и отображение json по кнопке</p>
-
+<!--
 <div class="button"><a class="btn btn-primary" href="http://localhost/restapi/api/product/read.php">Ссылка на JSON</a></div>
+-->
 <div id="app"></div>
 <script type="text/javascript" src="app/assets/js/jquery.min.js"></script>
 <script type="text/javascript" src="app/assets/js/bootstrap.min.js"></script>

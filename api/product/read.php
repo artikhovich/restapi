@@ -42,4 +42,7 @@ if($num>0){
 	}
 	http_response_code(200);
 	echo json_encode($products_arr);
+} else {
+	http_response_code(404);
+	echo json_encode(array("message"=>"Товары не найдены"), JSON_UNESCAPED_UNICODE);
 }

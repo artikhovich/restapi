@@ -1,53 +1,37 @@
-jQuery(function($){
-
-    // показать список товаров при первой загрузке 
-    showProducts();
-
-// при нажатии кнопки
-$(document).on('click', '.read-products-button', function(){
-    showProducts();
-});
-
-});
+var pageContentProducts = `
+    <form id='create-product-form' action='#' method='post' border='0'>
+        <input type='text' placeholder='* Введите Имя' name='name' class='form-control' required />
+        <input type='number' min='1' name='price' class='form-control' required />
+        <textarea name='description' class='form-control' required></textarea>
+        <input type='submit' class='btn btn-primary' value='Создать товар'>
+        <div id='read-products' class='btn btn-primary pull-right m-b-15px read-products-button'>Все товары</div>
+        <div id='read-category' class='btn btn-primary pull-right m-b-15px read-category-button'>Категория</div>
+    </form>
+`;
 
 
 // функция для показа списка товаров 
 function showProducts(){
-// получить список товаров из API 
-	$.getJSON("http://localhost/restapi/api/product/read.php", function(data){
+    let read_products_html=``;
+    $.getJSON("api/product/read.php", function(data){
+    read_products_html+=`<table class="read-products read-products table table-bordered table-hover"><tbody>`;
+    read_products_html+=`<tr>
+         <th class='w-15-pct'>ID</th>
+         <th class='w-15-pct'>Название</th>
+         <th class='w-15-pct'>Описание</th>
+         <th class='w-15-pct'>Категория</th>
+         <th class='w-15-pct'>Цена</th>
+     </tr>`;
 
-	});
-}
-
-var read_products_html=`
-    <!-- при нажатии загружается форма создания продукта -->
-    <div id='create-product' class='btn btn-primary pull-right m-b-15px create-product-button'>
-        <span class='glyphicon glyphicon-plus'></span> Создание товара
-    </div>
-
-    <!-- начало таблицы -->
-	<table class='table table-bordered table-hover'>
-
-    <!-- создание заголовков таблицы -->
-    <tr>
-        <th class='w-15-pct'>Название</th>
-        <th class='w-10-pct'>Цена</th>
-        <th class='w-15-pct'>Категория</th>
-        <th class='w-25-pct text-align-center'>Действие</th>
-    </tr>`;
-
-    // здесь будут строки 
-
-$.each(data.records, function(key, val) {
-
-    // создание новой строки таблицы для каждой записи 
-    read_products_html+=`
-        <tr>
-
-            <td>` + val.name + `</td>
-            <td>` + val.price + `</td>
-            <td>` + val.category_name + `</td>
-
+    // let row=data.records[id];
+        $.each(data.records, function(key,val){
+            read_products_html+=`
+                    <tr>
+                        <td>`+val.id+`</td>
+                        <td>`+val.name+`</td>
+                        <td>`+val.description+`</td>
+                        <td>`+val.category_name+`</td>
+                        <td>`+val.price+`</td>
             <!-- кнопки 'действий' -->
             <td>
                 <!-- кнопка чтения товара -->
@@ -65,15 +49,26 @@ $.each(data.records, function(key, val) {
                     <span class='glyphicon glyphicon-remove'></span> Удаление
                 </button>
             </td>
+                    </tr>`;
+        });
 
-        </tr>`;
-});
+    read_products_html+=`</tbody></table>`;
 
-// конец таблицы 
-read_products_html+=`</table>`;
+    // showProducts();
+    // changePageTitle('Rest Api App: JSON данные');
+    });
+    return read_products_html;
+};
 
 
 $("#page-content").html(read_products_html);
 
 // изменяем заголовок страницы 
-changePageTitle("Все товары");
+// changePageTitle("Все товары");
+
+jQuery(function($){
+    $(document).on('click', '#read-products', function(){
+        // showProducts(5);
+        $("#page-content").html(showProducts);
+    });
+});
